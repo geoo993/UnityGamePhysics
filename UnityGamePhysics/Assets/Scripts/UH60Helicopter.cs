@@ -17,6 +17,9 @@ using UnityEngine;
 
 // Drone
 // https://free3d.com/3d-model/simple-drone-69842.html
+// https://free3d.com/3d-model/drone-osprey-42216.html
+// https://free3d.com/3d-model/black-ops-2-mq-27-dragonfire-46317.html
+// https://free3d.com/3d-model/super-drone-4666.html
 
 public class UH60Helicopter : MonoBehaviour {
 
