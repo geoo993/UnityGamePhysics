@@ -1,0 +1,58 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 02.03.2011 19:13:51
+
+newmtl 04___Green_Temp
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.3216 0.4118 0.2510
+	Kd 0.3216 0.4118 0.2510
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\RAH66BodyTexture.jpg
+	map_Kd C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\RAH66BodyTexture.jpg
+	map_bump C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\RAH66Body_BumpMap.jpg
+	bump C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\RAH66Body_BumpMap.jpg
+
+newmtl 05___BlackRefelctive
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1255 0.1255 0.1255
+	Kd 0.1255 0.1255 0.1255
+	Ks 0.7650 0.7650 0.7650
+	Ke 0.0000 0.0000 0.0000
+
+newmtl 03___Black
+	Ns 2.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.0000 0.0000 0.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\BlackRubberTexture.jpg
+	map_Kd C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\BlackRubberTexture.jpg
+	map_bump C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\BlackRubberTexture.jpg
+	bump C:\Users\blougsm\Documents\3dsMaxDesign\scenes\RAH66Project\BlackRubberTexture.jpg
+
+newmtl 06___VentBlack
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1059 0.1059 0.1059
+	Kd 0.1059 0.1059 0.1059
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000

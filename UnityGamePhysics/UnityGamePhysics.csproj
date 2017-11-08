@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\ShowStats.cs" />
     <Compile Include="Assets\Scripts\SpinRite.cs" />
     <Compile Include="Assets\Scripts\SpinningBall.cs" />
+    <Compile Include="Assets\Scripts\UH60Helicopter.cs" />
     <Compile Include="Assets\Scripts\UniversalGravitation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
