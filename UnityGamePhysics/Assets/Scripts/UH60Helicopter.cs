@@ -23,6 +23,15 @@ using UnityEngine;
 
 public class UH60Helicopter : MonoBehaviour {
 
+
+	public float pitch = 0.0f;
+	public float yaw = 0.0f;
+    public float roll = 0.0f;
+
+    public Transform target;
+
+    private float rotationSpeed = 20.0f;
+   
 	// Use this for initialization
 	void Start () {
 		
@@ -30,6 +39,44 @@ public class UH60Helicopter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += transform.forward * 2.0f;
-	}
+
+        //rotate to look at the player
+        Vector3 relativePos = target.position - transform.position;
+        Quaternion look = Quaternion.LookRotation(relativePos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, look, rotationSpeed * Time.deltaTime);
+
+
+        Vector3 angles = GetPitchYawRollDeg(transform.rotation);
+
+        print("angles " + angles);
+        //calculateAngles();
+        
+    }
+    
+    
+    // https://answers.unity.com/questions/756467/getting-object-rotation-on-just-1-axis.html
+    // https://gamedev.stackexchange.com/questions/136712/locking-a-rotation-on-an-axisyaw-pitch-roll-based-on-a-parental-transform
+    void calculateAngles(){
+    
+		Vector3 eulerAngles=new Vector3(pitch, yaw, roll);
+		transform.rotation = Quaternion.Euler(eulerAngles);
+    
+    }
+    
+    
+    public static Vector3 GetPitchYawRollRad(Quaternion rotation)
+    {
+         float roll = Mathf.Atan2(2*rotation.y*rotation.w - 2*rotation.x*rotation.z, 1 - 2*rotation.y*rotation.y - 2*rotation.z*rotation.z);
+         float pitch = Mathf.Atan2(2*rotation.x*rotation.w - 2*rotation.y*rotation.z, 1 - 2*rotation.x*rotation.x - 2*rotation.z*rotation.z);
+         float yaw = Mathf.Asin(2*rotation.x*rotation.y + 2*rotation.z*rotation.w);
+                     
+         return new Vector3(pitch, yaw, roll);
+    }
+                 
+    public static Vector3 GetPitchYawRollDeg(Quaternion rotation)
+    {
+         Vector3 radResult = GetPitchYawRollRad(rotation);
+         return new Vector3(radResult.x * Mathf.Rad2Deg, radResult.y * Mathf.Rad2Deg, radResult.z * Mathf.Rad2Deg);
+    }
+    
 }

@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class UniversalGravitation : MonoBehaviour {
 
     private PhysicsEngine[] physicsEngineArray;
     private const float gravitationalConstant = 6.673e-11f ;  // [N.m2/kg2 (where N is Newtons)  ]
+    private Vector3 gravitationalForce;
+
+    public bool useRigidBody = false;
+
+    private Rigidbody rigidBody;
     
     void Start () {
         physicsEngineArray = FindObjectsOfType<PhysicsEngine>();
+        rigidBody = GetComponent<Rigidbody>();
     }
    	
 	// happens more than once per frame if the fixed time step is less than the actual frame update time
@@ -34,10 +41,24 @@ public class UniversalGravitation : MonoBehaviour {
                     float gravityMagnitude = gravitationalConstant * physicsEngineA.mass * physicsEngineB.mass / rSquared;
                     
                     Vector3 gravity = gravityMagnitude * distanceOffset.normalized;
-                    
+
+
+                    if (physicsEngineA.name == this.name){
+                        gravitationalForce = -gravity;
+                    }
+
                     // calculating a force excerted on A by B
                     // adding a force to the opposite direction of the movement of A
-                    physicsEngineA.AddForce(-gravity);
+
+                    if (useRigidBody)
+                    {
+                        rigidBody.AddForce(-gravity);
+                    }
+                    else
+                    {
+                        physicsEngineA.AddForce(-gravity);
+                    }
+                    
                     
                 }
             }
@@ -47,5 +68,9 @@ public class UniversalGravitation : MonoBehaviour {
     
     }
     
+    
+    public Vector3 GravitationalForce(){
+        return gravitationalForce;
+    }
     
 }

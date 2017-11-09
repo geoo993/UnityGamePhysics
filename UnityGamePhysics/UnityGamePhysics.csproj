@@ -105,12 +105,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AddAngularDrag.cs" />
+    <Compile Include="Assets\Scripts\AddDrag.cs" />
     <Compile Include="Assets\Scripts\AddForce.cs" />
     <Compile Include="Assets\Scripts\AddTorque.cs" />
     <Compile Include="Assets\Scripts\Chain.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\FluidDrag.cs" />
     <Compile Include="Assets\Scripts\GoalBox.cs" />
+    <Compile Include="Assets\Scripts\Helicopter.cs" />
+    <Compile Include="Assets\Scripts\HeloController.cs" />
+    <Compile Include="Assets\Scripts\HeloRotorController.cs" />
     <Compile Include="Assets\Scripts\InitialKick.cs" />
     <Compile Include="Assets\Scripts\Launcher.cs" />
     <Compile Include="Assets\Scripts\MagnusEffect.cs" />
