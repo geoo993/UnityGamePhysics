@@ -145,7 +145,7 @@ public class PhysicsEngine : MonoBehaviour {
         rotationVector = angularVelocityVector * Time.deltaTime;
         
         Quaternion target = Quaternion.Euler(rotationVector);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
                 
     }
    
