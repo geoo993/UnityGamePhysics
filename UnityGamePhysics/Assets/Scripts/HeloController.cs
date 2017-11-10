@@ -67,25 +67,48 @@ public class HeloController : MonoBehaviour
         KeyCode.C
     };
 
+    /*
+        backward movement
+    */
+    
+    
     // https://en.wikipedia.org/wiki/Sikorsky_UH-60_Black_Hawk
     // http://www.deagel.com/Support-Aircraft/UH-60L-Blackhawk_a000508002.aspx
+    // https://www.aircraftcompare.com/helicopter-airplane/sikorsky-uh-60-m-black-hawk/235
     private float NeverExceedSpeed = 357000.0f; //357km/h // speed limit
     private float TopSpeed = 100.0f; // at High Altitude //294000.0f; //294km/h // 1219.2
-    private float CruiseSpeed = 77.0f; //280000.0f; //280km/h
+    private float Speed, CruiseSpeed = 77.0f; //280000.0f; //280km/h
+    private float SpeedAcceleration = 0.0f; //280000.0f; //280km/h
     private float RateOfClimb = 4.5f; //m/s
     private float Ceiling = 5837.0f; //meter 
     private float TempCeiling = 0.0f;
-    private float mass = 158.0f; //W/kg)
-    private float power = 287675.7088631541f;  //3,780 shp => kg-m/s 
-
-    private float EmptyWeight = 4819.0f; //(4,819 kg)
-    private float MaxTakeoffWeight = 10660.0f; //(10,660 kg)
+    private float OriginalMass = 158.0f; //W/kg)
+    private float Power, OriginalPower = 287675.7088631541f;  //3,780 shp => kg-m/s 
+    
+    private float EmptyWeight = 4819.0f; //(4,819 kg) 
+    private float MaxTakeoffWeight = 10660.0f; //(10,660 kg) // what the pilot is allowed to take off with
     private float Payload = 5280f;// kilogram //(11,640 pound) // amount it can lift (like cargos)
     private float DiscArea = Mathf.Pow(210.0f, 2.0f);//(210 m²)
     private float EngineRotationSpeed = 17.132192f;
     private float mainRotorRotationSpeed = 221.0052768f;
 
-
+    private float FuelTankCapacity = 1362.74f; // 360.00 gallon  1,362.74 litres
+    private float FuelEconomy = 0.32f; // 0.32 km per litre  0.76 NM per gallon
+    private float FuelConsumed = 0.0f;
+    
+    private float TurnForce = 3f;
+    private float TurnTiltForce = 30f;
+    
+    private float ForwardTiltForce = 20f;
+    
+    private float turnTiltForcePercent = 301.5f;
+    private float turnForcePercent = 501.3f;
+    
+    //[SerializeField, Range(1.0f, 2.0f)]
+    private float velocityExponent = 1.5f; // the Stokes drag fluid power (U) at low (1.0f) or higher (2.0f) velocity
+    private float dragCoefficient = 1.05f; // CD is the drag coefficient – a dimensionless number.
+    private float angularDragCoefficient = 4.0f; // CD is the drag coefficient – a dimensionless number.
+  
     private float _engineForce;
     public float EngineForce
     {
@@ -99,32 +122,19 @@ public class HeloController : MonoBehaviour
         }
     }
 
-    private float TurnForce = 3f;
-    private float TurnTiltForce = 30f;
-    
-    private float ForwardTiltForce = 20f;
-    
-    private float turnTiltForcePercent = 301.5f;
-    private float turnForcePercent = 501.3f;
-    
-    [SerializeField, Range(1.0f, 2.0f)]
-    private float velocityExponent = 1.5f; // the Stokes drag fluid power (U) at low (1.0f) or higher (2.0f) velocity
-    private float dragCoefficient = 1.05f; // CD is the drag coefficient – a dimensionless number.
-	private float angularDragCoefficient = 4.0f; // CD is the drag coefficient – a dimensionless number.
   
     // Use this for initialization
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-
-        rigidBody.mass = mass;
+        rigidBody.mass = OriginalMass;
+        rigidBody.drag = dragCoefficient;
         rigidBody.angularDrag = angularDragCoefficient;
     }
-    
+
     float Mass(){
         return rigidBody.mass;
     }
-    
     
     // air density https://en.wikipedia.org/wiki/Density_of_air
     Vector3 WeightVector(){
@@ -142,7 +152,9 @@ public class HeloController : MonoBehaviour
     
     Vector3 TrustVector()
     {
-        return Vector3.forward * Mathf.Max(0.0f, pitch * CruiseSpeed * Mass());
+        float Acceleration = Mathf.Clamp(SpeedAcceleration, 0.0f, TopSpeed - CruiseSpeed);
+        print("acceleration "+Acceleration);
+        return Vector3.forward * Mathf.Max(0.0f, pitch * ( CruiseSpeed + Acceleration) * Mass());
     }
     
     // https://en.wikipedia.org/wiki/Drag_(physics)
@@ -167,27 +179,27 @@ public class HeloController : MonoBehaviour
         return -rigidBody.angularVelocity * (1.0f - Time.deltaTime * angularDragCoefficient);
     }
                  
-    private void Thrust()
+    private void ThrustForce()
     {
         rigidBody.AddRelativeForce(TrustVector());
     }
     
-    private void Lift()
+    private void LiftForce()
     {
         rigidBody.AddRelativeForce(LiftVector());
     }
     
-    private void Drag()
+    private void DragForce()
     {
         rigidBody.AddRelativeForce(DragVector());
     }
     
-    private void AngularDrag()
+    private void AngularDragForce()
     {
         rigidBody.AddRelativeTorque(AngularDragVector());
     }
     
-    private void Weight(){
+    private void WeightForce(){
         rigidBody.AddRelativeForce(WeightVector());
     }
     
@@ -195,7 +207,6 @@ public class HeloController : MonoBehaviour
         float turn = TurnForce * Mathf.Lerp(roll, roll * (turnTiltForcePercent - Mathf.Abs(pitch)), Mathf.Max(0.0f, pitch));
         tiltForward = Mathf.Lerp(tiltForward, turn, Time.fixedDeltaTime * TurnForce);
         
-        // tilt while moving forward
         rigidBody.AddRelativeTorque(0.0f, tiltForward * Mass(), 0.0f);
     }
     
@@ -233,7 +244,7 @@ public class HeloController : MonoBehaviour
             }
         }
 
-        // stable lurn
+        // stable turn
         if (roll > 0.0f)
         {
             tempX = -Time.fixedDeltaTime;
@@ -259,6 +270,7 @@ public class HeloController : MonoBehaviour
                      if (IsGrounded) { break; }
                      tempY = Time.fixedDeltaTime;
                      movement = MoveTowards.Forward;
+                     SpeedAcceleration += Time.fixedDeltaTime;
                      break;
                  case KeyCode.S:
                      //Debug.Log("Back");
@@ -266,6 +278,7 @@ public class HeloController : MonoBehaviour
                      if (IsGrounded) { break; }
                      tempY = -Time.fixedDeltaTime;
                      movement = MoveTowards.Backward;
+                     SpeedAcceleration -= Time.fixedDeltaTime;
                      break;
                  case KeyCode.A:
                      //Debug.Log("Left");
@@ -280,25 +293,42 @@ public class HeloController : MonoBehaviour
                      tempX = Time.fixedDeltaTime;
                      break;
                  case KeyCode.Q:
-                    {
-                        //Debug.Log("TurnLeft");
+                     //Debug.Log("TurnLeft");
 
-                        if (IsGrounded) { break; }
-                        Yaw(RotateDirection.Left);
-                    }
+                     if (IsGrounded) { break; }
+                     Yaw(RotateDirection.Left);
+                    
                      break;
                  case KeyCode.E:
-                    {
-                        //Debug.Log("TurnRight");
-                        if (IsGrounded) { break; }
-                        Yaw(RotateDirection.Right);
-                    }
+                    //Debug.Log("TurnRight");
+                    if (IsGrounded) { break; }
+                    Yaw(RotateDirection.Right);
+                    
                      break;
                  default:
                  //   Debug.Log("Default");
                      break;
                 }
             }
+
+            if (Input.GetKeyUp(key))
+            {
+                switch (key)
+                {
+                    case KeyCode.W:
+                        if (IsGrounded) { break; }
+                        SpeedAcceleration = 0.0f;
+                        break;
+                    case KeyCode.S:
+                        if (IsGrounded) { break; }
+                        SpeedAcceleration = 0.0f;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            
         }
         
         roll += tempX; // roll 
@@ -339,18 +369,15 @@ public class HeloController : MonoBehaviour
     
     private void MovementModule(){
         
-        Lift();
-        
-        Thrust();
-        Drag();
-        
-        AngularDrag();
-        Weight();
+        LiftForce();
+        ThrustForce();
+        DragForce();
+        AngularDragForce();
+        WeightForce();
         
     }
     
     private void AttitudeModule(){
-        
         Pitch();
         Roll();
     }
@@ -419,7 +446,7 @@ public class HeloController : MonoBehaviour
     }
     
     private void Move(){
-        CruiseSpeed = 77.0f;
+        CruiseSpeed = Speed;
     }
     
     /*
@@ -461,22 +488,46 @@ public class HeloController : MonoBehaviour
     // FixedUpdate happens more than once per frame if the fixed time step is less than the actual frame update time
     void FixedUpdate()
     {
-		MovementKeyControlls();
-		PowerKeyControlls();
+
+        if (FuelTankCapacity > FuelConsumed) {
+
+            if (IsGrounded == false)
+            {
+                FuelConsumed += FuelEconomy;
+                //float consumed = FuelConsumed / FuelTankCapacity;
+            }
+            
+        }else {
+            Debug.LogWarning("Out of fuel");
+
+            if (IsGrounded == false && rigidBody.mass > 1.0f)
+            {
+                float consumptionRate = FuelEconomy * 100.0f / FuelTankCapacity;
+
+                float massConsumptionRate = OriginalMass * consumptionRate / 100.0f;
+                float powerConsumptionRate = Power * consumptionRate / 100.0f;
+                float dragConsumptionRate = dragCoefficient * consumptionRate / 100.0f;
+                float angularDragConsumptionRate = angularDragCoefficient * consumptionRate / 100.0f;
+                
+                Power -= powerConsumptionRate;
+                rigidBody.mass -= massConsumptionRate;
+                rigidBody.drag -= dragConsumptionRate;
+                rigidBody.angularDrag -= angularDragConsumptionRate;
+            }
+        }
+        
+        MovementKeyControlls();
+        PowerKeyControlls();
         MovementModule();
         AttitudeModule();
         
         if (transform.position.y < 100.0f){
             Hover();
         }else{
-			Move();
+            Move();
         }
         
-        //print("EngineForce  "+ EngineForce + ",  helicopterMove " + helicopterMove + ",   IsGrounded " + IsGrounded);
-       
-       
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
