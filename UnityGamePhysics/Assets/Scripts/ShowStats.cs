@@ -14,6 +14,7 @@ public class ShowStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(name + " inertia tensor "+rigidBody.inertiaTensor + ", center of mass "+rigidBody.centerOfMass);
+    
+		Debug.Log(name + " inertia tensor "+rigidBody.inertiaTensor + ", inertia tensor magnitude "+ rigidBody.inertiaTensor.magnitude + ", inertia tensor rotation "+ rigidBody.inertiaTensorRotation + ", center of mass "+rigidBody.centerOfMass);
 	}
 }
