@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D026D3C3-FE70-2FD6-E4E7-838360BDFEA3}</ProjectGuid>
+    <ProjectGuid>{9BFA2402-E0C0-BFE8-758D-57899BF3B132}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp.dll</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass.dll</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile></TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneOSXIntel64:27</UnityBuildTarget>
     <UnityVersion>5.6.4f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -105,36 +105,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityGamePhysics.Plugins.csproj">
-      <Project>{9BFA2402-E0C0-BFE8-758D-57899BF3B132}</Project>
-      <Name>UnityGamePhysics.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Scripts\AddAngularDrag.cs" />
-    <Compile Include="Assets\Scripts\AddDrag.cs" />
-    <Compile Include="Assets\Scripts\AddForce.cs" />
-    <Compile Include="Assets\Scripts\AddTorque.cs" />
-    <Compile Include="Assets\Scripts\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\Chain.cs" />
-    <Compile Include="Assets\Scripts\Destroyer.cs" />
-    <Compile Include="Assets\Scripts\FluidDrag.cs" />
-    <Compile Include="Assets\Scripts\GoalBox.cs" />
-    <Compile Include="Assets\Scripts\HelicopterController.cs" />
-    <Compile Include="Assets\Scripts\HelicopterRotorController.cs" />
-    <Compile Include="Assets\Scripts\HelicpoterType.cs" />
-    <Compile Include="Assets\Scripts\InitialKick.cs" />
-    <Compile Include="Assets\Scripts\Launcher.cs" />
-    <Compile Include="Assets\Scripts\LookAtTargetController.cs" />
-    <Compile Include="Assets\Scripts\MagnusEffect.cs" />
-    <Compile Include="Assets\Scripts\MouseOrbit.cs" />
-    <Compile Include="Assets\Scripts\PhysicsEngine.cs" />
-    <Compile Include="Assets\Scripts\RocketEngine.cs" />
-    <Compile Include="Assets\Scripts\ShowStats.cs" />
-    <Compile Include="Assets\Scripts\SpinRite.cs" />
-    <Compile Include="Assets\Scripts\SpinningBall.cs" />
-    <Compile Include="Assets\Scripts\UH60Helicopter.cs" />
-    <Compile Include="Assets\Scripts\UniversalGravitation.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\Displace.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\MeshContainer.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\PlanarReflection.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\SpecularLighting.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\Water.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\WaterBase.cs" />
+    <Compile Include="Assets\Standard Assets\Environment\Water\Water\Scripts\WaterTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />

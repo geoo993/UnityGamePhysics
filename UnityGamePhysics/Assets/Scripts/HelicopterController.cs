@@ -30,7 +30,9 @@ public class HelicopterController : MonoBehaviour
     
     */
 
-    private Rigidbody rigidBody;
+    private Rigidbody rigidBody{
+        get{ return GetComponent<Rigidbody>(); }
+    }
     public HelicopterRotorController mainRotor;
     public HelicopterRotorController rearRotor;
 
@@ -52,7 +54,9 @@ public class HelicopterController : MonoBehaviour
     */
     private float side, pitch, yaw, roll, tiltForward, tiltLeft, tiltRight = 0.0f;
     private bool IsGrounded = false;
+    public bool ShouldConsumerFuel = false;
     private bool ShouldPowerUp = false;
+    private bool IsActivated = false;
     
     // Controlls
     List<KeyCode> keys = new List<KeyCode>{
@@ -68,45 +72,36 @@ public class HelicopterController : MonoBehaviour
         KeyCode.C
     };
 
-    /*
-        backward movement
-    */
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+    private Vector3 originalScale;
     
+    private float TopSpeed;
+    private float CruiseSpeed;
+    private float SpeedAcceleration;
+    private float RateOfClimb;
+    private float Ceiling;
+    private float TempCeiling;
+    private float OriginalMass;
+    private float Power, OriginalPower;
     
-    // https://en.wikipedia.org/wiki/Sikorsky_UH-60_Black_Hawk
-    // http://www.deagel.com/Support-Aircraft/UH-60L-Blackhawk_a000508002.aspx
-    // https://www.aircraftcompare.com/helicopter-airplane/sikorsky-uh-60-m-black-hawk/235
-    private float NeverExceedSpeed = 357000.0f; //357km/h // speed limit
-    private float TopSpeed = 20.0f;//100.0f // at High Altitude //294000.0f; //294km/h // 1219.2
-    private float CruiseSpeed = 10.0f;//77.0f; //280000.0f; //280km/h
-    private float SpeedAcceleration = 0.0f; //280000.0f; //280km/h
-    private float RateOfClimb = 4.5f; //m/s
-    private float Ceiling = 5837.0f; //meter 
-    private float TempCeiling = 0.0f;
-    private float OriginalMass = 158.0f; //W/kg)
-    private float Power, OriginalPower = 287675.7088631541f;  //3,780 shp => kg-m/s 
-    
-    private float EmptyWeight = 4819.0f; //(4,819 kg) 
-    private float MaxTakeoffWeight = 10660.0f; //(10,660 kg) // what the pilot is allowed to take off with
-    private float Payload = 5280f;// kilogram //(11,640 pound) // amount it can lift (like cargos)
-    private float DiscArea = Mathf.Pow(210.0f, 2.0f);//(210 m²)
-    private float EngineRotationSpeed = 17.132192f;
-    private float MainRotorRotationSpeed = 221.0052768f;
+    private float EngineRotationSpeed;
+    private float MainRotorRotationSpeed;
 
-    private float FuelTankCapacity = 1362.74f; // 360.00 gallon  1,362.74 litres
-    private float FuelEconomy = 0.32f; // 0.32 km per litre  0.76 NM per gallon
-    private float FuelConsumed = 0.0f;
+    private float FuelTankCapacity;
+    private float FuelEconomy;
+    private float FuelConsumed;
     
-    private float TurnForce = 3f;
-    private float TurnTiltForce = 30f;
+    private float TurnForce;
+    private float TurnTiltForce;
     
-    private float ForwardTiltForce = 20f;
+    private float ForwardTiltForce;
    
-    private float TurnTiltForcePercent = 1.5f;
-    private float TurnForcePercent = 1.3f; 
-    
-    private float DragCoefficient = 1.05f; // CD is the drag coefficient – a dimensionless number.
-    private float AngularDragCoefficient = 6.0f; // CD is the drag coefficient – a dimensionless number.
+    private float TurnTiltForcePercent;
+    private float TurnForcePercent;
+
+    private float DragCoefficient;
+    private float AngularDragCoefficient;
   
     private float _engineForce;
     public float EngineForce
@@ -122,11 +117,57 @@ public class HelicopterController : MonoBehaviour
         }
     }
 
-
-    void Start()
+    private void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        SetRigidBody(rigidBody);
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+        originalScale = transform.localScale;
+    }
+
+    public void Run(HelicopterSpecs heli){
+    
+        TopSpeed = heli.TopSpeed;
+        CruiseSpeed = heli.CruiseSpeed;
+        SpeedAcceleration = 0.0f;
+        RateOfClimb = heli.RateOfClimb;
+        Ceiling = heli.Ceiling;
+        TempCeiling = 0.0f;
+        OriginalMass = heli.Mass;
+        Power = heli.Power;
+        OriginalPower = heli.Power;
+        
+        EngineRotationSpeed = heli.EngineRotationSpeed;
+        MainRotorRotationSpeed = heli.MainRotorRotationSpeed;
+
+        FuelTankCapacity = heli.FuelTankCapacity;
+        FuelEconomy = heli.FuelEconomy;
+        FuelConsumed = 0.0f;
+        
+        TurnForce = heli.TurnForce;
+        TurnTiltForce = heli.TurnTiltForce;
+
+        ForwardTiltForce = heli.ForwardTiltForce;
+       
+        TurnTiltForcePercent = heli.TurnTiltForcePercent;
+        TurnForcePercent = heli.TurnForcePercent;
+    
+        DragCoefficient = heli.DragCoefficient;
+        AngularDragCoefficient = heli.AngularDragCoefficient;
+    
+        
+        if (rigidBody)
+        {
+            SetRigidBody(rigidBody);
+        }
+
+        Activate();
+    }
+    
+    public void Activate(){
+        IsActivated = true;
+    } 
+    public void DeActivate(){
+        IsActivated = false;
     }
     
     void SetRigidBody(Rigidbody body){
@@ -254,6 +295,17 @@ public class HelicopterController : MonoBehaviour
             EngineForce = Mathf.Lerp(EngineForce, 0.0f, Time.fixedDeltaTime);
             FuelConsumed = 0.0f;
         }
+    }
+    
+    private void DisableHelicopter(){
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+        transform.localScale = originalScale;
+        EngineForce = 0.0f;
+        //mainRotor.rotarSpeed = 0.0f;
+        //rearRotor.rotarSpeed = 0.0f;
+        //GetComponent<AudioSource>().pitch = 0.0f;
+        
     }
     
     private void MovementKeyControlls()
@@ -529,41 +581,54 @@ public class HelicopterController : MonoBehaviour
     // FixedUpdate happens more than once per frame if the fixed time step is less than the actual frame update time
     void FixedUpdate()
     {
-    
-        if (FuelTankCapacity > FuelConsumed) {
 
-            if (IsGrounded == false)
+
+        if (ShouldConsumerFuel && IsActivated)
+        {
+            if (FuelTankCapacity > FuelConsumed)
             {
-                FuelConsumed += FuelEconomy;
-                //float consumed = FuelConsumed / FuelTankCapacity;
+
+                if (IsGrounded == false)
+                {
+                    FuelConsumed += FuelEconomy;
+                    //float consumed = FuelConsumed / FuelTankCapacity;
+                }
+
             }
-            
-        }else {
-            Debug.LogWarning("Helicopter out of fuel");
-
-            if (IsGrounded == false && rigidBody.mass > 1.0f)
+            else
             {
-                float consumptionRate = FuelEconomy * 100.0f / FuelTankCapacity;
+                Debug.LogWarning("Helicopter out of fuel");
 
-                float massConsumptionRate = OriginalMass * consumptionRate / 100.0f;
-                float powerConsumptionRate = Power * consumptionRate / 100.0f;
-                float dragConsumptionRate = DragCoefficient * consumptionRate / 100.0f;
-                float angularDragConsumptionRate = AngularDragCoefficient * consumptionRate / 100.0f;
-                
-                Power -= powerConsumptionRate;
-                rigidBody.mass -= massConsumptionRate;
-                rigidBody.drag -= dragConsumptionRate;
-                rigidBody.angularDrag -= angularDragConsumptionRate;
-            }else {
-                Debug.LogWarning("Helicopter Dead");
+                if (IsGrounded == false && rigidBody.mass > 1.0f)
+                {
+                    float consumptionRate = FuelEconomy * 100.0f / FuelTankCapacity;
+
+                    float massConsumptionRate = OriginalMass * consumptionRate / 100.0f;
+                    float powerConsumptionRate = Power * consumptionRate / 100.0f;
+                    float dragConsumptionRate = DragCoefficient * consumptionRate / 100.0f;
+                    float angularDragConsumptionRate = AngularDragCoefficient * consumptionRate / 100.0f;
+
+                    Power -= powerConsumptionRate;
+                    rigidBody.mass -= massConsumptionRate;
+                    rigidBody.drag -= dragConsumptionRate;
+                    rigidBody.angularDrag -= angularDragConsumptionRate;
+                }
+                else
+                {
+                    Debug.LogWarning("Helicopter Dead");
+                }
             }
         }
-        
-        MovementKeyControlls();
-        PowerKeyControlls();
-        MovementModule();
-        AttitudeModule();
-        
+
+        if (IsActivated)
+        {
+            MovementKeyControlls();
+            PowerKeyControlls();
+            MovementModule();
+            AttitudeModule();
+        }else{
+            DisableHelicopter();
+        }
         
     }
 
