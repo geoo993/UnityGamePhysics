@@ -76,7 +76,7 @@ public class HelicopterController : MonoBehaviour
     private Quaternion originalRotation;
     private Vector3 originalScale;
     
-    private float TopSpeed;
+    private float MaximumSpeed;
     private float CruiseSpeed;
     private float SpeedAcceleration;
     private float RateOfClimb;
@@ -126,13 +126,13 @@ public class HelicopterController : MonoBehaviour
 
     public void Run(HelicopterSpecs heli){
     
-        TopSpeed = heli.TopSpeed;
+        MaximumSpeed = heli.MaximumSpeed;
         CruiseSpeed = heli.CruiseSpeed;
         SpeedAcceleration = 0.0f;
         RateOfClimb = heli.RateOfClimb;
         Ceiling = heli.Ceiling;
         TempCeiling = 0.0f;
-        OriginalMass = heli.Mass;
+        OriginalMass = heli.EmptyWeight / Physics.gravity.magnitude;
         Power = heli.Power;
         OriginalPower = heli.Power;
         
@@ -184,17 +184,17 @@ public class HelicopterController : MonoBehaviour
 
     float Speed(){
     
-        float MaxAcceleration = TopSpeed - CruiseSpeed;
+        float MaxAcceleration = MaximumSpeed - CruiseSpeed;
         float Acceleration = Mathf.Clamp(SpeedAcceleration, -MaxAcceleration, MaxAcceleration);
         float CurrentSpeed = (CruiseSpeed + Acceleration);
-        if (movement == MoveTowards.Backward)
-        {
-            return (CurrentSpeed * 0.5f);
+        
+        if (movement == MoveTowards.Backward){
+            CurrentSpeed = (CurrentSpeed * 0.5f);
         }else if (movement == MoveTowards.Left || movement == MoveTowards.Right){
-            return (CurrentSpeed * 0.2f);
-        }else {
-            return CurrentSpeed;
+            CurrentSpeed = (CurrentSpeed * 0.2f);
         }
+
+        return CurrentSpeed;
     }
     
     // Air density https://en.wikipedia.org/wiki/Density_of_air
