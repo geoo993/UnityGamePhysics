@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: f7b41b13ee8574de2b20c5a5999b0efe
+timeCreated: 1510516701
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: airframe
+    100002: battery
+    100004: //RootNode
+    100006: cockpit
+    100008: engine
+    100010: frame
+    100012: gastanks
+    100014: leftwheel
+    100016: pipe
+    100018: rotor
+    100020: rwheel
+    100022: stabiliz
+    100024: stretch
+    100026: stretche
+    100028: tail
+    100030: tailroto
+    100032: verstabi
+    100034: windsh
+    100036: windshi
+    100038: windshie
+    400000: airframe
+    400002: battery
+    400004: //RootNode
+    400006: cockpit
+    400008: engine
+    400010: frame
+    400012: gastanks
+    400014: leftwheel
+    400016: pipe
+    400018: rotor
+    400020: rwheel
+    400022: stabiliz
+    400024: stretch
+    400026: stretche
+    400028: tail
+    400030: tailroto
+    400032: verstabi
+    400034: windsh
+    400036: windshi
+    400038: windshie
+    2300000: airframe
+    2300002: battery
+    2300004: cockpit
+    2300006: engine
+    2300008: frame
+    2300010: gastanks
+    2300012: leftwheel
+    2300014: pipe
+    2300016: rotor
+    2300018: rwheel
+    2300020: stabiliz
+    2300022: stretch
+    2300024: stretche
+    2300026: tail
+    2300028: tailroto
+    2300030: verstabi
+    2300032: windsh
+    2300034: windshi
+    2300036: windshie
+    3300000: airframe
+    3300002: battery
+    3300004: cockpit
+    3300006: engine
+    3300008: frame
+    3300010: gastanks
+    3300012: leftwheel
+    3300014: pipe
+    3300016: rotor
+    3300018: rwheel
+    3300020: stabiliz
+    3300022: stretch
+    3300024: stretche
+    3300026: tail
+    3300028: tailroto
+    3300030: verstabi
+    3300032: windsh
+    3300034: windshi
+    3300036: windshie
+    4300000: windshi
+    4300002: windshie
+    4300004: frame
+    4300006: stretch
+    4300008: tailroto
+    4300010: tail
+    4300012: rotor
+    4300014: stretche
+    4300016: windsh
+    4300018: cockpit
+    4300020: stabiliz
+    4300022: verstabi
+    4300024: pipe
+    4300026: battery
+    4300028: gastanks
+    4300030: airframe
+    4300032: engine
+    4300034: leftwheel
+    4300036: rwheel
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

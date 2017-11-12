@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\FluidDrag.cs" />
     <Compile Include="Assets\Scripts\GoalBox.cs" />
+    <Compile Include="Assets\Scripts\HeliController.cs" />
     <Compile Include="Assets\Scripts\HelicopterController.cs" />
     <Compile Include="Assets\Scripts\HelicopterPad.cs" />
     <Compile Include="Assets\Scripts\HelicopterRotorController.cs" />

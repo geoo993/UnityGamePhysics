@@ -18,6 +18,8 @@ using UnityEngine;
 // http://www.cadnav.com/3d-models/model-11523.html
 // https://free3d.com/3d-model/skycrane-12410.html
 // https://free3d.com/3d-model/helicopter-51398.html
+// http://www.cadnav.com/3d-models/model-11522.html
+// http://www.cadnav.com/3d-models/model-11528.html
 
 // Drone
 // https://free3d.com/3d-model/simple-drone-69842.html
