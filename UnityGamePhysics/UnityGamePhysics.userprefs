@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{D026D3C3-FE70-2FD6-E4E7-838360BDFEA3}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HelicopterController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HelicopterPad.cs">
     <Files>
-      <File FileName="Assets/Scripts/HelicopterController.cs" Line="190" Column="9" />
-      <File FileName="Assets/Scripts/HelicpoterType.cs" Line="102" Column="50" />
+      <File FileName="Assets/Scripts/HelicopterController.cs" Line="246" Column="9" />
+      <File FileName="Assets/Scripts/HelicpoterType.cs" Line="19" Column="1" />
+      <File FileName="Assets/Scripts/HelicopterPad.cs" Line="15" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

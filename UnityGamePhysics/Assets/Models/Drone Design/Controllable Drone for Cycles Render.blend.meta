@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: 0f53307bbdf1f4837b506bf7002b250b
+timeCreated: 1510496945
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Cube
+    100004: helicopter_001
+    100006: helicopter_001_MeshPart0
+    100008: helicopter_001_MeshPart1
+    100010: helicopter_001_MeshPart2
+    100012: helicopter_001_MeshPart3
+    100014: helicopter_001_MeshPart4
+    100016: helicopter_001_MeshPart5
+    100018: helicopter_001_MeshPart6
+    100020: helicopter_001_MeshPart7
+    100022: Plane_001
+    100024: Plane_002
+    100026: Rotor_L_001
+    100028: Rotor_L_2_001
+    100030: Rotor_L_2_001_MeshPart0
+    100032: Rotor_L_2_001_MeshPart1
+    100034: Rotor_R_001
+    100036: Rotor_R_2_001
+    100038: Rotor_R_2_001_MeshPart0
+    100040: Rotor_R_2_001_MeshPart1
+    400000: //RootNode
+    400002: Cube
+    400004: helicopter_001
+    400006: helicopter_001_MeshPart0
+    400008: helicopter_001_MeshPart1
+    400010: helicopter_001_MeshPart2
+    400012: helicopter_001_MeshPart3
+    400014: helicopter_001_MeshPart4
+    400016: helicopter_001_MeshPart5
+    400018: helicopter_001_MeshPart6
+    400020: helicopter_001_MeshPart7
+    400022: Plane_001
+    400024: Plane_002
+    400026: Rotor_L_001
+    400028: Rotor_L_2_001
+    400030: Rotor_L_2_001_MeshPart0
+    400032: Rotor_L_2_001_MeshPart1
+    400034: Rotor_R_001
+    400036: Rotor_R_2_001
+    400038: Rotor_R_2_001_MeshPart0
+    400040: Rotor_R_2_001_MeshPart1
+    2300000: Cube
+    2300002: helicopter_001_MeshPart0
+    2300004: helicopter_001_MeshPart1
+    2300006: helicopter_001_MeshPart2
+    2300008: helicopter_001_MeshPart3
+    2300010: helicopter_001_MeshPart4
+    2300012: helicopter_001_MeshPart5
+    2300014: helicopter_001_MeshPart6
+    2300016: helicopter_001_MeshPart7
+    2300018: Plane_001
+    2300020: Plane_002
+    2300022: Rotor_L_001
+    2300024: Rotor_L_2_001_MeshPart0
+    2300026: Rotor_L_2_001_MeshPart1
+    2300028: Rotor_R_001
+    2300030: Rotor_R_2_001_MeshPart0
+    2300032: Rotor_R_2_001_MeshPart1
+    3300000: Cube
+    3300002: helicopter_001_MeshPart0
+    3300004: helicopter_001_MeshPart1
+    3300006: helicopter_001_MeshPart2
+    3300008: helicopter_001_MeshPart3
+    3300010: helicopter_001_MeshPart4
+    3300012: helicopter_001_MeshPart5
+    3300014: helicopter_001_MeshPart6
+    3300016: helicopter_001_MeshPart7
+    3300018: Plane_001
+    3300020: Plane_002
+    3300022: Rotor_L_001
+    3300024: Rotor_L_2_001_MeshPart0
+    3300026: Rotor_L_2_001_MeshPart1
+    3300028: Rotor_R_001
+    3300030: Rotor_R_2_001_MeshPart0
+    3300032: Rotor_R_2_001_MeshPart1
+    4300000: Cube
+    4300002: Plane_002
+    4300004: Plane_001
+    4300006: helicopter_001_MeshPart0
+    4300008: helicopter_001_MeshPart1
+    4300010: helicopter_001_MeshPart2
+    4300012: helicopter_001_MeshPart3
+    4300014: helicopter_001_MeshPart4
+    4300016: helicopter_001_MeshPart5
+    4300018: helicopter_001_MeshPart6
+    4300020: helicopter_001_MeshPart7
+    4300022: Rotor_L_2_001_MeshPart0
+    4300024: Rotor_L_2_001_MeshPart1
+    4300026: Rotor_L_001
+    4300028: Rotor_R_2_001_MeshPart0
+    4300030: Rotor_R_2_001_MeshPart1
+    4300032: Rotor_R_001
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
