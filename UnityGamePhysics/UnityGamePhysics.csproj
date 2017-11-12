@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\Chain.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\FluidDrag.cs" />
+    <Compile Include="Assets\Scripts\Gizmo.cs" />
     <Compile Include="Assets\Scripts\GoalBox.cs" />
     <Compile Include="Assets\Scripts\HeliController.cs" />
     <Compile Include="Assets\Scripts\HelicopterController.cs" />
