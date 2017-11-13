@@ -26,6 +26,7 @@ using UnityEngine;
 // https://free3d.com/3d-model/drone-osprey-42216.html
 // https://free3d.com/3d-model/black-ops-2-mq-27-dragonfire-46317.html
 // https://free3d.com/3d-model/super-drone-4666.html
+// https://www.cgtrader.com/free-3d-models/aircraft/helicopter/drone-4d95157d-07d5-4c0d-bbce-4755b3e97bf6
 
 public struct HelicopterSpecs {
    

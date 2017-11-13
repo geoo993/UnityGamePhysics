@@ -120,13 +120,13 @@
     <Compile Include="Assets\Scripts\CarThruster.cs" />
     <Compile Include="Assets\Scripts\Chain.cs" />
     <Compile Include="Assets\Scripts\Destroyer.cs" />
+    <Compile Include="Assets\Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\FluidDrag.cs" />
     <Compile Include="Assets\Scripts\Gizmo.cs" />
     <Compile Include="Assets\Scripts\GoalBox.cs" />
     <Compile Include="Assets\Scripts\HeliController.cs" />
     <Compile Include="Assets\Scripts\HelicopterController.cs" />
     <Compile Include="Assets\Scripts\HelicopterPad.cs" />
-    <Compile Include="Assets\Scripts\HelicopterRotorController.cs" />
     <Compile Include="Assets\Scripts\HelicpoterType.cs" />
     <Compile Include="Assets\Scripts\HoverController.cs" />
     <Compile Include="Assets\Scripts\InitialKick.cs" />
@@ -137,6 +137,7 @@
     <Compile Include="Assets\Scripts\PhysicsEngine.cs" />
     <Compile Include="Assets\Scripts\ProjectileFire.cs" />
     <Compile Include="Assets\Scripts\RocketEngine.cs" />
+    <Compile Include="Assets\Scripts\RotorController.cs" />
     <Compile Include="Assets\Scripts\Scooter.cs" />
     <Compile Include="Assets\Scripts\ShowStats.cs" />
     <Compile Include="Assets\Scripts\SpinRite.cs" />

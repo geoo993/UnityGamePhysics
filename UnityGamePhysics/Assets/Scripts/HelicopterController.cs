@@ -33,8 +33,8 @@ public class HelicopterController : MonoBehaviour
     private Rigidbody rigidBody{
         get{ return GetComponent<Rigidbody>(); }
     }
-    public HelicopterRotorController mainRotor;
-    public HelicopterRotorController rearRotor;
+    public RotorController mainRotor;
+    public RotorController rearRotor;
 
     /*
         The MOVEMENT methods are critical to the appearance of realism in a virtual helicopter system. 
